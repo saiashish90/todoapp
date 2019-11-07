@@ -17,26 +17,26 @@ class DBWrapper {
   }
 
   void addTodo(Todo todo) async {
-    await DB.sharedInstance.createTodo(todo);
+    DB.sharedInstance.createTodo(todo);
   }
 
   void markTodoAsDone(Todo todo) async {
     todo.status = TodoStatus.done.index;
     todo.updated = DateTime.now();
-    await DB.sharedInstance.updateTodo(todo);
+    DB.sharedInstance.updateTodo(todo);
   }
 
   void markDoneAsTodo(Todo todo) async {
     todo.status = TodoStatus.active.index;
     todo.updated = DateTime.now();
-    await DB.sharedInstance.updateTodo(todo);
+    DB.sharedInstance.updateTodo(todo);
   }
 
   void deleteTodo(Todo todo) async {
-    await DB.sharedInstance.deleteTodo(todo);
+    DB.sharedInstance.deleteTodo(todo);
   }
 
   void deleteAllDoneTodos() async {
-    await DB.sharedInstance.deleteAllTodos();
+    DB.sharedInstance.deleteAllTodos();
   }
 }

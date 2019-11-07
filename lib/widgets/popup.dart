@@ -24,7 +24,13 @@ class Popup extends StatelessWidget {
               getTodosAndDones();
             });
           }else if(value == kMoreOptionsKeys.bleh.index){
-            
+            Utils.showCustomDialog(context,
+            title: 'Simran Gay',
+            msg: 'Simran Gay',
+            onConfirm: (){
+
+            }
+            );
           }
         },
         itemBuilder: (context) {

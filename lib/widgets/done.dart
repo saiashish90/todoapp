@@ -21,7 +21,7 @@ class _DoneState extends State<Done> {
       children: <Widget>[
         Card(
           margin: EdgeInsets.symmetric(vertical: 10, horizontal: 10),
-          color: Color(0xffbcbab8),
+          color: Colors.white,
           child: Column(
             children: <Widget>[
               SizedBox(

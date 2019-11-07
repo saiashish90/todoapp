@@ -18,7 +18,7 @@ class TodosApp extends StatelessWidget {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       theme: ThemeData.light().copyWith(
-        backgroundColor: Color(0xfffff5eb),
+        backgroundColor: Colors.white24,
       ),
       title: kAppTitle,
       home: HomeScreen(),

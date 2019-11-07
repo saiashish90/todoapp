@@ -1,10 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_todos/utils/utils.dart';
 
 class TaskInput extends StatefulWidget {
   final Function onSubmitted;
 
-  TaskInput({@required Function this.onSubmitted});
+  TaskInput({@required this.onSubmitted});
 
   @override
   _TaskInputState createState() => _TaskInputState();

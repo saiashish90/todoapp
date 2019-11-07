@@ -1,6 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:url_launcher/url_launcher.dart';
-import 'dart:io';
 import 'package:flutter_todos/utils/colors.dart';
 
 enum kMoreOptionsKeys {

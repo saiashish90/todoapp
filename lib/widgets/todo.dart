@@ -74,7 +74,6 @@ class _TodoState extends State<Todo> {
 
   Widget getTaskItem(String text,
       {@required int index, @required Function onTap}) {
-    final double height = 50.0;
     return Container(
         child: Column(
       children: <Widget>[
