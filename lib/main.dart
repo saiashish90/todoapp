@@ -16,15 +16,12 @@ void main() => runApp(TodosApp());
 class TodosApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    SystemChrome.setSystemUIOverlayStyle(SystemUiOverlayStyle.dark.copyWith(
+    SystemChrome.setSystemUIOverlayStyle(SystemUiOverlayStyle.light.copyWith(
         statusBarColor: Colors.white, // Color for Android
         statusBarBrightness:
             Brightness.dark // Dark == white status bar -- for IOS.
         ));
     return MaterialApp(
-      theme: ThemeData(
-        primaryColor: Colors.white
-      ),
       debugShowCheckedModeBanner: false,
       title: kAppTitle,
       home: HomeScreen(),
