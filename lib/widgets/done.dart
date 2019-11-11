@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_todos/utils/colors.dart';
 import 'package:flutter_todos/widgets/shared.dart';
 import 'package:flutter_todos/model/model.dart' as Model;
-import 'package:flutter_todos/utils/colors.dart';
 
 class Done extends StatefulWidget {
   final Function onTap;
@@ -20,8 +20,9 @@ class _DoneState extends State<Done> {
     return Stack(
       children: <Widget>[
         Card(
-          margin: EdgeInsets.symmetric(vertical: 10, horizontal: 10),
-          color: Colors.white,
+          margin: EdgeInsets.symmetric(vertical: 30, horizontal: 10),
+          color: Colors.transparent,
+          elevation: 0,
           child: Column(
             children: <Widget>[
               SizedBox(
@@ -46,7 +47,7 @@ class _DoneState extends State<Done> {
         SharedWidget.getCardHeader(
             context: context,
             text: 'DONE',
-            backgroundColorCode: TodosColor.kSecondaryColorCode,
+            backgroundColorCode: Colors.green,
             customFontSize: 16),
       ],
     );
@@ -54,7 +55,6 @@ class _DoneState extends State<Done> {
 
   Widget getTaskItem(String text,
       {@required int index, @required Function onTap}) {
-    final double height = 50.0;
     return Container(
         child: Column(
       children: <Widget>[
@@ -69,26 +69,29 @@ class _DoneState extends State<Done> {
             onTap: onTap,
             child: IntrinsicHeight(
               child: Row(
-                crossAxisAlignment: CrossAxisAlignment.stretch,
                 children: <Widget>[
-                  Container(
-                    margin: EdgeInsets.only(left: 5),
-                    height: height,
-                    child: Icon(
-                      Icons.check,
-                      color: Colors.grey[300],
-                    ),
-                  ),
                   Expanded(
                     child: Container(
+                      decoration: BoxDecoration(
+                        color: redColor,
+                        borderRadius: BorderRadius.all(Radius.circular(10)),
+                        boxShadow: [
+                          new BoxShadow(
+                            color: Colors.black.withOpacity(0.5),
+                            blurRadius: 10.0,
+                          ),
+                        ],
+                      ),
+                      constraints: BoxConstraints(minHeight: 60),
+                      margin: EdgeInsets.only(left: 10, right: 10, bottom: 20),
                       padding: EdgeInsets.only(
-                          left: 10, top: 10, right: 20, bottom: 10),
+                          left: 10, top: 10, right: 10, bottom: 10),
                       child: Text(
                         text,
                         overflow: TextOverflow.clip,
                         textAlign: TextAlign.justify,
                         style: Theme.of(context).textTheme.title.copyWith(
-                              color: Colors.grey[300],
+                              color: Colors.black,
                               decoration: TextDecoration.lineThrough,
                             ),
                       ),
@@ -97,12 +100,6 @@ class _DoneState extends State<Done> {
                 ],
               ),
             ),
-          ),
-        ),
-        SizedBox(
-          height: 0.5,
-          child: Container(
-            color: Colors.white54,
           ),
         ),
       ],

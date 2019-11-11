@@ -1,6 +1,7 @@
-
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_todos/constants.dart';
+import 'package:flutter_todos/utils/colors.dart';
 import 'package:flutter_todos/widgets/header.dart';
 import 'package:flutter_todos/widgets/task_input.dart';
 import 'package:flutter_todos/widgets/todo.dart';
@@ -15,11 +16,13 @@ void main() => runApp(TodosApp());
 class TodosApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
+    SystemChrome.setSystemUIOverlayStyle(SystemUiOverlayStyle.dark.copyWith(
+        statusBarColor: Colors.white, // Color for Android
+        statusBarBrightness:
+            Brightness.dark // Dark == white status bar -- for IOS.
+        ));
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      theme: ThemeData.light().copyWith(
-        backgroundColor: Colors.white24,
-      ),
       title: kAppTitle,
       home: HomeScreen(),
     );
@@ -47,7 +50,7 @@ class _HomeScreenState extends State<HomeScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Theme.of(context).backgroundColor,
+      backgroundColor: darkGreyColor,
       body: SafeArea(
         child: GestureDetector(
           onTap: () {
@@ -56,8 +59,14 @@ class _HomeScreenState extends State<HomeScreen> {
           child: CustomScrollView(
             slivers: <Widget>[
               SliverAppBar(
-                backgroundColor: Theme.of(context).backgroundColor,
+                shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.only(
+                  bottomLeft: Radius.circular(20),
+                  bottomRight: Radius.circular(20),
+                )),
                 floating: true,
+                pinned: true,
+                backgroundColor: Colors.white,
                 flexibleSpace: FlexibleSpaceBar(
                   background: Column(
                     children: <Widget>[
@@ -83,7 +92,7 @@ class _HomeScreenState extends State<HomeScreen> {
                                 ),
                               ),
                               Container(
-                                margin: EdgeInsets.only(top: 20),
+                                margin: EdgeInsets.only(top: 10),
                                 child: TaskInput(
                                   onSubmitted: addTaskInTodo,
                                 ), // Add Todos
@@ -95,6 +104,7 @@ class _HomeScreenState extends State<HomeScreen> {
                     ],
                   ),
                 ),
+                
                 expandedHeight: 200,
               ),
               SliverList(

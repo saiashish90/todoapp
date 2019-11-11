@@ -3,7 +3,7 @@ import 'package:flutter_todos/model/db_wrapper.dart';
 import 'package:flutter_todos/utils/utils.dart';
 
 class Popup extends StatelessWidget {
-  Function getTodosAndDones;
+  final Function getTodosAndDones;
 
   Popup({this.getTodosAndDones});
 

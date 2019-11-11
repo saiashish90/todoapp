@@ -26,8 +26,9 @@ class _TodoState extends State<Todo> {
     return Stack(
       children: <Widget>[
         Card(
-          margin: EdgeInsets.symmetric(vertical: 10, horizontal: 10),
-          color: Colors.white,
+          margin: EdgeInsets.symmetric(vertical: 30, horizontal: 10),
+          color: Colors.transparent,
+          elevation: 0,
           child: Column(
             children: <Widget>[
               SizedBox(
@@ -35,7 +36,7 @@ class _TodoState extends State<Todo> {
               ),
               if (widget.todos == null || widget.todos.length == 0)
                 Container(
-                  height: 10,
+                  height: 100,
                 ),
               if (widget.todos != null)
                 for (int i = 0; i < widget.todos.length; ++i)
@@ -67,7 +68,8 @@ class _TodoState extends State<Todo> {
           ),
         ),
         SharedWidget.getCardHeader(
-            context: context, text: 'TO DO', customFontSize: 16),
+            context: context, text: 'TO DO', customFontSize: 16,
+            ),
       ],
     );
   }
@@ -89,26 +91,28 @@ class _TodoState extends State<Todo> {
             child: IntrinsicHeight(
               child: Row(
                 children: <Widget>[
-                  Container(
-                    margin: EdgeInsets.only(top: 5),
-                    width: 7,
-                    decoration: BoxDecoration(
-                      color: TodosColor.sharedInstance.leadingTaskColor(index),
-                    ),
-                  ),
-                  SizedBox(
-                    width: 10,
-                  ),
                   Expanded(
                     child: Container(
+                      decoration: BoxDecoration(
+                        color: redColor,
+                        borderRadius: BorderRadius.all(Radius.circular(10)),
+                        boxShadow: [
+                          new BoxShadow(
+                            color: Colors.black.withOpacity(0.5),
+                            blurRadius: 10.0,
+                          ),
+                        ],
+                      ),
+                      constraints: BoxConstraints(minHeight: 60),
+                      margin: EdgeInsets.only(left: 10, right: 10, bottom: 20),
                       padding: EdgeInsets.only(
-                          left: 10, top: 15, right: 20, bottom: 15),
+                          left: 10, top: 10, right: 10, bottom: 10),
                       child: Text(
                         text,
                         overflow: TextOverflow.clip,
                         textAlign: TextAlign.justify,
                         style: Theme.of(context).textTheme.title.copyWith(
-                              color: Color(0xff373640),
+                              color: Colors.black,
                             ),
                       ),
                     ),
@@ -116,12 +120,6 @@ class _TodoState extends State<Todo> {
                 ],
               ),
             ),
-          ),
-        ),
-        SizedBox(
-          height: 0.5,
-          child: Container(
-            color: Colors.grey,
           ),
         ),
       ],

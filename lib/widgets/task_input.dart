@@ -16,8 +16,8 @@ class _TaskInputState extends State<TaskInput> {
   Widget build(BuildContext context) {
     return Container(
       child: Card(
-        margin: EdgeInsets.symmetric(vertical: 10, horizontal: 10),
-        color: Colors.white,
+        margin: EdgeInsets.symmetric(vertical: 10, horizontal: 18),
+        color: Colors.white60,
         child: Row(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: <Widget>[
@@ -33,7 +33,7 @@ class _TaskInputState extends State<TaskInput> {
             Expanded(
               child: TextField(
                 minLines: 1,
-                maxLines: 2,
+                maxLines: 3,
                 decoration: InputDecoration(
                     hintText: 'What do you want to do?',
                     border: InputBorder.none),

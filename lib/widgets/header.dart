@@ -12,10 +12,7 @@ class Header extends StatelessWidget {
         padding: EdgeInsets.only(left: 15.0, top: 30.0),
         child: Text(
           msg,
-          style: Theme.of(context)
-              .textTheme
-              .headline
-              .copyWith(fontFamily: 'Lobster Two', fontSize: 30),
+          style: TextStyle(fontWeight: FontWeight.bold, fontSize: 30 )
         ),
       ),
     );

@@ -1,6 +1,24 @@
 import 'package:flutter/material.dart';
 import 'dart:math';
 
+Color redColor = new Color(0xFFDC4F64);
+Color darkGreyColor = new Color(0xFF212128);
+
+TextStyle inTitleStyle = new TextStyle(
+  fontFamily: 'Avenir', 
+  fontWeight: FontWeight.bold, 
+  color: darkGreyColor, 
+  fontSize: 50
+);
+
+TextStyle darkTodoTitle = new TextStyle(
+  fontFamily: 'Avenir', 
+  fontWeight: FontWeight.bold, 
+  color: darkGreyColor, 
+  fontSize: 15
+);
+
+
 class TodosColor {
   static const kPrimaryColorCode = 0xffca3e47;
   static const kSecondaryColorCode = 0xff34465d;

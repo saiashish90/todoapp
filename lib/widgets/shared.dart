@@ -1,23 +1,21 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_todos/utils/colors.dart';
 
 class SharedWidget {
   static Widget getCardHeader(
       {@required BuildContext context,
       @required String text,
       Color textColor = Colors.white,
-      int backgroundColorCode = TodosColor.kPrimaryColorCode,
+      Color backgroundColorCode = Colors.red,
       double customFontSize}) {
     customFontSize ??= Theme.of(context).textTheme.title.fontSize;
 
     return Container(
-      width: 85,
       alignment: AlignmentDirectional.center,
-      margin: EdgeInsets.only(left: 32),
+      margin: EdgeInsets.only(left:10, right: 10, top: 20),
       padding: EdgeInsets.all(10),
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(5),
-        color: Color(backgroundColorCode),
+        color: backgroundColorCode,
       ),
       child: Text(
         text,
