@@ -4,6 +4,9 @@ import 'package:flutter_todos/utils/colors.dart';
 import 'package:flutter_todos/widgets/shared.dart';
 import 'package:flutter_todos/model/model.dart' as Model;
 
+const int NoTask = -1;
+const int animationMilliseconds = 500;
+
 class Done extends StatefulWidget {
   final Function onTap;
   final Function onDeleteTask;
@@ -16,6 +19,9 @@ class Done extends StatefulWidget {
 }
 
 class _DoneState extends State<Done> {
+  int taskPosition = NoTask;
+  bool showCompletedTaskAnimation = false;
+  final SlidableController slidableController = SlidableController();
   @override
   Widget build(BuildContext context) {
     return Stack(
@@ -35,21 +41,38 @@ class _DoneState extends State<Done> {
                 ),
               if (widget.dones != null)
                 for (int i = widget.dones.length - 1; i >= 0; --i)
-                  getTaskItem(
-                    widget.dones[i].title,
-                    index: i,
-                    onTap: () {
-                      widget.onTap(pos: i);
-                    },
+                  AnimatedOpacity(
+                    curve: Curves.fastOutSlowIn,
+                    opacity: taskPosition != i
+                        ? 1.0
+                        : showCompletedTaskAnimation ? 0 : 1,
+                    duration: Duration(seconds: 1),
+                    child: getTaskItem(
+                      widget.dones[i].title,
+                      index: i,
+                      onTap: () {
+                        setState(() {
+                          taskPosition = i;
+                          showCompletedTaskAnimation = true;
+                        });
+                        Future.delayed(
+                          Duration(milliseconds: animationMilliseconds),
+                        ).then((value) {
+                          taskPosition = NoTask;
+                          showCompletedTaskAnimation = false;
+                          widget.onTap(pos: i);
+                        });
+                      },
+                    ),
                   ),
             ],
           ),
         ),
         SharedWidget.getCardHeader(
             context: context,
-            text: 'DONE',
+            text: 'Completed Tasks',
             backgroundColorCode: Colors.green,
-            customFontSize: 16),
+            customFontSize: 20),
       ],
     );
   }
@@ -60,10 +83,12 @@ class _DoneState extends State<Done> {
         child: Column(
       children: <Widget>[
         Slidable(
-          actionPane: SlidableDrawerActionPane(),
+          controller: slidableController,
+          actionPane: SlidableBehindActionPane(),
           key: Key(text + '$index'),
           direction: Axis.horizontal,
           actionExtentRatio: 0.25,
+          movementDuration: Duration(milliseconds: 500),
           dismissal: SlidableDismissal(
             child: SlidableDrawerDismissal(),
             onDismissed: (direction) {
@@ -88,7 +113,10 @@ class _DoneState extends State<Done> {
                         ],
                       ),
                       constraints: BoxConstraints(minHeight: 80),
-                      margin: EdgeInsets.only(left: 10, right: 10,),
+                      margin: EdgeInsets.only(
+                        left: 10,
+                        right: 10,
+                      ),
                       padding: EdgeInsets.only(
                           left: 10, top: 10, right: 10, bottom: 10),
                       child: Text(
@@ -106,6 +134,14 @@ class _DoneState extends State<Done> {
               ),
             ),
           ),
+          actions: <Widget>[
+            new IconSlideAction(
+              caption: 'Done',
+              color: Colors.black45,
+              icon: Icons.archive,
+              onTap: onTap,
+            ),
+          ],
           secondaryActions: <Widget>[
             new IconSlideAction(
               caption: 'Revert',

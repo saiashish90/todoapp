@@ -71,8 +71,8 @@ class _TodoState extends State<Todo> {
         ),
         SharedWidget.getCardHeader(
           context: context,
-          text: 'TO DO',
-          customFontSize: 16,
+          text: 'Tasks',
+          customFontSize: 20,
         ),
       ],
     );
@@ -86,10 +86,11 @@ class _TodoState extends State<Todo> {
           children: <Widget>[
             Slidable(
               controller: slidableController,
-              actionPane: SlidableDrawerActionPane(),
+              actionPane: SlidableBehindActionPane(),
               key: Key(text + '$index'),
               direction: Axis.horizontal,
               actionExtentRatio: 0.25,
+              movementDuration: Duration(milliseconds: 500),
               dismissal: SlidableDismissal(
                 child: SlidableDrawerDismissal(),
                 onDismissed: (direction) {
@@ -114,8 +115,10 @@ class _TodoState extends State<Todo> {
                             ],
                           ),
                           constraints: BoxConstraints(minHeight: 80),
-                          margin:
-                              EdgeInsets.only(left: 10, right: 10,),
+                          margin: EdgeInsets.only(
+                            left: 10,
+                            right: 10,
+                          ),
                           padding: EdgeInsets.only(
                               left: 10, top: 10, right: 10, bottom: 10),
                           child: Text(
@@ -132,6 +135,14 @@ class _TodoState extends State<Todo> {
                   ),
                 ),
               ),
+              actions: <Widget>[
+                new IconSlideAction(
+                  caption: 'Done',
+                  color: Colors.black45,
+                  icon: Icons.archive,
+                  onTap: onTap,
+                ),
+              ],
               secondaryActions: <Widget>[
                 new IconSlideAction(
                   caption: 'Done',

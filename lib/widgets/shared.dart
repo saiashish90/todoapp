@@ -27,22 +27,4 @@ class SharedWidget {
       ),
     );
   }
-
-  static Widget getOnDismissDeleteBackground() {
-    return Container(
-          child: Container(
-        alignment: Alignment.centerRight,
-        decoration: BoxDecoration(
-          color: Colors.red[300],
-          borderRadius: BorderRadius.all(Radius.circular(10)),
-        ),
-        margin: EdgeInsets.only(left: 10, right: 10, bottom: 20),
-        padding: EdgeInsets.only(left: 10, top: 10, right: 10, bottom: 10),
-        child: Icon(
-          Icons.delete,
-          color: Colors.white,
-        ),
-      ),
-    );
-  }
 }

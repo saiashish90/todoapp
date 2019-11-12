@@ -105,7 +105,6 @@ class _HomeScreenState extends State<HomeScreen> {
                     ],
                   ),
                 ),
-                
                 expandedHeight: 200,
               ),
               SliverList(
@@ -120,7 +119,7 @@ class _HomeScreenState extends State<HomeScreen> {
                         ); // Active todos
                       case 1:
                         return SizedBox(
-                          height: 30,
+                          height: 0,
                         );
                       default:
                         return Done(
