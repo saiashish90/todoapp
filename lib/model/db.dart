@@ -2,7 +2,6 @@ import 'dart:io';
 import 'package:sqflite/sqflite.dart';
 import 'package:path/path.dart';
 import 'package:path_provider/path_provider.dart';
-
 import 'package:flutter_todos/model/model.dart';
 
 const kTodosStatusActive = 0;
