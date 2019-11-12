@@ -9,32 +9,19 @@ class Popup extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-
-    return PopupMenuButton<int>(
-        elevation: 4,
-        color: Colors.grey,
-        icon: Icon(Icons.more_vert),
-        onSelected: (value) {
-          print('Selected value: $value');
-          if (value == kMoreOptionsKeys.clearAll.index) {
-            Utils.showCustomDialog(context,
-                title: 'Are you sure?',
-                msg: 'All done todos will be deleted permanently',
-                onConfirm: () {
-              DBWrapper.sharedInstance.deleteAllDoneTodos();
-              getTodosAndDones();
-            });
-          }
+    return Padding(
+      padding: const EdgeInsets.all(8),
+      child: InkWell(
+        child: Icon(Icons.delete_outline),
+        onTap: () {
+          Utils.showCustomDialog(context,
+              title: 'Are you sure?',
+              msg: 'All completed tasks will be deleted permanently', onConfirm: () {
+            DBWrapper.sharedInstance.deleteAllDoneTodos();
+            getTodosAndDones();
+          });
         },
-        itemBuilder: (context) {
-          List list = List<PopupMenuEntry<int>>();
-
-          for (int i = 0; i < kMoreOptionsMap.length; ++i) {
-            list.add(PopupMenuItem(value: i, child: Text(kMoreOptionsMap[i])));
-
-          }
-
-          return list;
-        });
+      ),
+    );
   }
 }

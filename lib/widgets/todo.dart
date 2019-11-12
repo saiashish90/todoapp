@@ -108,14 +108,14 @@ class _TodoState extends State<Todo> {
                             borderRadius: BorderRadius.all(Radius.circular(10)),
                             boxShadow: [
                               new BoxShadow(
-                                color: Colors.black.withOpacity(0),
+                                color: Colors.black.withOpacity(0.3),
                                 blurRadius: 10.0,
                               ),
                             ],
                           ),
                           constraints: BoxConstraints(minHeight: 80),
                           margin:
-                              EdgeInsets.only(left: 10, right: 10, bottom: 0),
+                              EdgeInsets.only(left: 10, right: 10,),
                           padding: EdgeInsets.only(
                               left: 10, top: 10, right: 10, bottom: 10),
                           child: Text(
@@ -136,7 +136,7 @@ class _TodoState extends State<Todo> {
                 new IconSlideAction(
                   caption: 'Done',
                   color: Colors.black45,
-                  icon: Icons.done,
+                  icon: Icons.archive,
                   onTap: onTap,
                 ),
               ],

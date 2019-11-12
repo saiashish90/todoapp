@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_slidable/flutter_slidable.dart';
 import 'package:flutter_todos/utils/colors.dart';
 import 'package:flutter_todos/widgets/shared.dart';
 import 'package:flutter_todos/model/model.dart' as Model;
@@ -58,41 +59,65 @@ class _DoneState extends State<Done> {
     return Container(
         child: Column(
       children: <Widget>[
-        InkWell(
-          onTap: onTap,
-          child: IntrinsicHeight(
-            child: Row(
-              children: <Widget>[
-                Expanded(
-                  child: Container(
-                    decoration: BoxDecoration(
-                      color: redColor,
-                      borderRadius: BorderRadius.all(Radius.circular(10)),
-                      boxShadow: [
-                        new BoxShadow(
-                          color: Colors.black.withOpacity(0.5),
-                          blurRadius: 10.0,
-                        ),
-                      ],
-                    ),
-                    constraints: BoxConstraints(minHeight: 60),
-                    margin: EdgeInsets.only(left: 10, right: 10, bottom: 20),
-                    padding: EdgeInsets.only(
-                        left: 10, top: 10, right: 10, bottom: 10),
-                    child: Text(
-                      text,
-                      overflow: TextOverflow.clip,
-                      textAlign: TextAlign.justify,
-                      style: Theme.of(context).textTheme.title.copyWith(
-                            color: Colors.black,
-                            decoration: TextDecoration.lineThrough,
+        Slidable(
+          actionPane: SlidableDrawerActionPane(),
+          key: Key(text + '$index'),
+          direction: Axis.horizontal,
+          actionExtentRatio: 0.25,
+          dismissal: SlidableDismissal(
+            child: SlidableDrawerDismissal(),
+            onDismissed: (direction) {
+              widget.onDeleteTask(todo: widget.dones[index]);
+            },
+          ),
+          child: InkWell(
+            //onTap: onTap,
+            child: IntrinsicHeight(
+              child: Row(
+                children: <Widget>[
+                  Expanded(
+                    child: Container(
+                      decoration: BoxDecoration(
+                        color: redColor,
+                        borderRadius: BorderRadius.all(Radius.circular(10)),
+                        boxShadow: [
+                          new BoxShadow(
+                            color: Colors.black.withOpacity(0.3),
+                            blurRadius: 10.0,
                           ),
+                        ],
+                      ),
+                      constraints: BoxConstraints(minHeight: 80),
+                      margin: EdgeInsets.only(left: 10, right: 10,),
+                      padding: EdgeInsets.only(
+                          left: 10, top: 10, right: 10, bottom: 10),
+                      child: Text(
+                        text,
+                        overflow: TextOverflow.clip,
+                        textAlign: TextAlign.justify,
+                        style: Theme.of(context).textTheme.title.copyWith(
+                              color: Colors.black,
+                              decoration: TextDecoration.lineThrough,
+                            ),
+                      ),
                     ),
                   ),
-                ),
-              ],
+                ],
+              ),
             ),
           ),
+          secondaryActions: <Widget>[
+            new IconSlideAction(
+              caption: 'Revert',
+              color: Colors.black45,
+              icon: Icons.unarchive,
+              onTap: onTap,
+            ),
+          ],
+        ),
+        Container(
+          margin: EdgeInsets.only(top: 10, bottom: 10),
+          color: Colors.grey,
         ),
       ],
     ));

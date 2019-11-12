@@ -40,8 +40,8 @@ class Utils {
       content: Text(msg),
       actions: <Widget>[
         if (onConfirm != null)
-          RaisedButton(
-            color: Color(TodosColor.kPrimaryColorCode),
+          FlatButton(
+            color: redColor,
             onPressed: () {
               onConfirm();
               Navigator.pop(context);
@@ -53,8 +53,8 @@ class Utils {
               ),
             ),
           ),
-        RaisedButton(
-          color: Color(TodosColor.kSecondaryColorCode),
+        FlatButton(
+          color: darkGreyColor,
           onPressed: () {
             Navigator.pop(context);
           },
