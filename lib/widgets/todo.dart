@@ -141,12 +141,9 @@ class _TodoState extends State<Todo> {
                 ),
               ],
             ),
-            SizedBox(
-              height: 15,
-              child: Container(
-                margin: EdgeInsets.only(top: 10, bottom: 10),
-                color: Colors.grey,
-              ),
+            Container(
+              margin: EdgeInsets.only(top: 10, bottom: 10),
+              color: Colors.grey,
             ),
           ],
         ));
