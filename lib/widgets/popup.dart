@@ -12,6 +12,7 @@ class Popup extends StatelessWidget {
 
     return PopupMenuButton<int>(
         elevation: 4,
+        color: Colors.grey,
         icon: Icon(Icons.more_vert),
         onSelected: (value) {
           print('Selected value: $value');
@@ -23,14 +24,6 @@ class Popup extends StatelessWidget {
               DBWrapper.sharedInstance.deleteAllDoneTodos();
               getTodosAndDones();
             });
-          }else if(value == kMoreOptionsKeys.bleh.index){
-            Utils.showCustomDialog(context,
-            title: 'Simran Gay',
-            msg: 'Simran Gay',
-            onConfirm: (){
-
-            }
-            );
           }
         },
         itemBuilder: (context) {
@@ -39,11 +32,6 @@ class Popup extends StatelessWidget {
           for (int i = 0; i < kMoreOptionsMap.length; ++i) {
             list.add(PopupMenuItem(value: i, child: Text(kMoreOptionsMap[i])));
 
-            if (i == 0) {
-              list.add(PopupMenuDivider(
-                height: 5,
-              ));
-            }
           }
 
           return list;

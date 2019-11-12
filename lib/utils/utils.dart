@@ -3,12 +3,10 @@ import 'package:flutter_todos/utils/colors.dart';
 
 enum kMoreOptionsKeys {
   clearAll,
-  bleh
 }
 
 Map<int, String> kMoreOptionsMap = {
   kMoreOptionsKeys.clearAll.index: 'Clear Done',
-  kMoreOptionsKeys.bleh.index: 'bleh',
 };
 
 class Utils {

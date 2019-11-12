@@ -58,47 +58,39 @@ class _DoneState extends State<Done> {
     return Container(
         child: Column(
       children: <Widget>[
-        Dismissible(
-          key: Key(text + '$index'),
-          direction: DismissDirection.endToStart,
-          onDismissed: (direction) {
-            widget.onDeleteTask(todo: widget.dones[index]);
-          },
-          background: SharedWidget.getOnDismissDeleteBackground(),
-          child: InkWell(
-            onTap: onTap,
-            child: IntrinsicHeight(
-              child: Row(
-                children: <Widget>[
-                  Expanded(
-                    child: Container(
-                      decoration: BoxDecoration(
-                        color: redColor,
-                        borderRadius: BorderRadius.all(Radius.circular(10)),
-                        boxShadow: [
-                          new BoxShadow(
-                            color: Colors.black.withOpacity(0.5),
-                            blurRadius: 10.0,
+        InkWell(
+          onTap: onTap,
+          child: IntrinsicHeight(
+            child: Row(
+              children: <Widget>[
+                Expanded(
+                  child: Container(
+                    decoration: BoxDecoration(
+                      color: redColor,
+                      borderRadius: BorderRadius.all(Radius.circular(10)),
+                      boxShadow: [
+                        new BoxShadow(
+                          color: Colors.black.withOpacity(0.5),
+                          blurRadius: 10.0,
+                        ),
+                      ],
+                    ),
+                    constraints: BoxConstraints(minHeight: 60),
+                    margin: EdgeInsets.only(left: 10, right: 10, bottom: 20),
+                    padding: EdgeInsets.only(
+                        left: 10, top: 10, right: 10, bottom: 10),
+                    child: Text(
+                      text,
+                      overflow: TextOverflow.clip,
+                      textAlign: TextAlign.justify,
+                      style: Theme.of(context).textTheme.title.copyWith(
+                            color: Colors.black,
+                            decoration: TextDecoration.lineThrough,
                           ),
-                        ],
-                      ),
-                      constraints: BoxConstraints(minHeight: 60),
-                      margin: EdgeInsets.only(left: 10, right: 10, bottom: 20),
-                      padding: EdgeInsets.only(
-                          left: 10, top: 10, right: 10, bottom: 10),
-                      child: Text(
-                        text,
-                        overflow: TextOverflow.clip,
-                        textAlign: TextAlign.justify,
-                        style: Theme.of(context).textTheme.title.copyWith(
-                              color: Colors.black,
-                              decoration: TextDecoration.lineThrough,
-                            ),
-                      ),
                     ),
                   ),
-                ],
-              ),
+                ),
+              ],
             ),
           ),
         ),

@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_todos/widgets/shared.dart';
 import 'package:flutter_todos/model/model.dart' as Model;
 import 'package:flutter_todos/utils/colors.dart';
+import 'package:flutter_slidable/flutter_slidable.dart';
 
 const int NoTask = -1;
 const int animationMilliseconds = 500;
@@ -20,6 +21,7 @@ class Todo extends StatefulWidget {
 class _TodoState extends State<Todo> {
   int taskPosition = NoTask;
   bool showCompletedTaskAnimation = false;
+  final SlidableController slidableController = SlidableController();
 
   @override
   Widget build(BuildContext context) {
@@ -68,8 +70,10 @@ class _TodoState extends State<Todo> {
           ),
         ),
         SharedWidget.getCardHeader(
-            context: context, text: 'TO DO', customFontSize: 16,
-            ),
+          context: context,
+          text: 'TO DO',
+          customFontSize: 16,
+        ),
       ],
     );
   }
@@ -77,52 +81,74 @@ class _TodoState extends State<Todo> {
   Widget getTaskItem(String text,
       {@required int index, @required Function onTap}) {
     return Container(
+        color: Colors.transparent,
         child: Column(
-      children: <Widget>[
-        Dismissible(
-          key: Key(text + '$index'),
-          direction: DismissDirection.endToStart,
-          onDismissed: (direction) {
-            widget.onDeleteTask(todo: widget.todos[index]);
-          },
-          background: SharedWidget.getOnDismissDeleteBackground(),
-          child: InkWell(
-            onTap: onTap,
-            child: IntrinsicHeight(
-              child: Row(
-                children: <Widget>[
-                  Expanded(
-                    child: Container(
-                      decoration: BoxDecoration(
-                        color: redColor,
-                        borderRadius: BorderRadius.all(Radius.circular(10)),
-                        boxShadow: [
-                          new BoxShadow(
-                            color: Colors.black.withOpacity(0.5),
-                            blurRadius: 10.0,
+          children: <Widget>[
+            Slidable(
+              controller: slidableController,
+              actionPane: SlidableDrawerActionPane(),
+              key: Key(text + '$index'),
+              direction: Axis.horizontal,
+              actionExtentRatio: 0.25,
+              dismissal: SlidableDismissal(
+                child: SlidableDrawerDismissal(),
+                onDismissed: (direction) {
+                  widget.onDeleteTask(todo: widget.todos[index]);
+                },
+              ),
+              child: InkWell(
+                //onTap: onTap,
+                child: IntrinsicHeight(
+                  child: Row(
+                    children: <Widget>[
+                      Expanded(
+                        child: Container(
+                          decoration: BoxDecoration(
+                            color: redColor,
+                            borderRadius: BorderRadius.all(Radius.circular(10)),
+                            boxShadow: [
+                              new BoxShadow(
+                                color: Colors.black.withOpacity(0),
+                                blurRadius: 10.0,
+                              ),
+                            ],
                           ),
-                        ],
+                          constraints: BoxConstraints(minHeight: 80),
+                          margin:
+                              EdgeInsets.only(left: 10, right: 10, bottom: 0),
+                          padding: EdgeInsets.only(
+                              left: 10, top: 10, right: 10, bottom: 10),
+                          child: Text(
+                            text,
+                            overflow: TextOverflow.clip,
+                            textAlign: TextAlign.justify,
+                            style: Theme.of(context).textTheme.title.copyWith(
+                                  color: Colors.black,
+                                ),
+                          ),
+                        ),
                       ),
-                      constraints: BoxConstraints(minHeight: 60),
-                      margin: EdgeInsets.only(left: 10, right: 10, bottom: 20),
-                      padding: EdgeInsets.only(
-                          left: 10, top: 10, right: 10, bottom: 10),
-                      child: Text(
-                        text,
-                        overflow: TextOverflow.clip,
-                        textAlign: TextAlign.justify,
-                        style: Theme.of(context).textTheme.title.copyWith(
-                              color: Colors.black,
-                            ),
-                      ),
-                    ),
+                    ],
                   ),
-                ],
+                ),
+              ),
+              secondaryActions: <Widget>[
+                new IconSlideAction(
+                  caption: 'Done',
+                  color: Colors.black45,
+                  icon: Icons.done,
+                  onTap: onTap,
+                ),
+              ],
+            ),
+            SizedBox(
+              height: 15,
+              child: Container(
+                margin: EdgeInsets.only(top: 10, bottom: 10),
+                color: Colors.grey,
               ),
             ),
-          ),
-        ),
-      ],
-    ));
+          ],
+        ));
   }
 }

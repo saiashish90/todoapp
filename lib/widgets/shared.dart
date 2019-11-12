@@ -11,7 +11,7 @@ class SharedWidget {
 
     return Container(
       alignment: AlignmentDirectional.center,
-      margin: EdgeInsets.only(left:10, right: 10, top: 20),
+      margin: EdgeInsets.only(left: 10, right: 10, top: 20),
       padding: EdgeInsets.all(10),
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(5),
@@ -30,14 +30,17 @@ class SharedWidget {
 
   static Widget getOnDismissDeleteBackground() {
     return Container(
-      alignment: Alignment.centerRight,
-      color: Colors.red[300],
-      padding: EdgeInsets.only(right: 10),
-      child: Text(
-        'DELETE',
-        style: TextStyle(
+          child: Container(
+        alignment: Alignment.centerRight,
+        decoration: BoxDecoration(
+          color: Colors.red[300],
+          borderRadius: BorderRadius.all(Radius.circular(10)),
+        ),
+        margin: EdgeInsets.only(left: 10, right: 10, bottom: 20),
+        padding: EdgeInsets.only(left: 10, top: 10, right: 10, bottom: 10),
+        child: Icon(
+          Icons.delete,
           color: Colors.white,
-          fontWeight: FontWeight.bold,
         ),
       ),
     );
