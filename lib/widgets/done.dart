@@ -136,9 +136,9 @@ class _DoneState extends State<Done> {
           ),
           actions: <Widget>[
             new IconSlideAction(
-              caption: 'Done',
+              caption: 'Revert',
               color: Colors.black45,
-              icon: Icons.archive,
+              icon: Icons.unarchive,
               onTap: onTap,
             ),
           ],
