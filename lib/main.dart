@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_todos/constants.dart';
 import 'package:flutter_todos/utils/colors.dart';
-import 'package:flutter_todos/widgets/header.dart';
 import 'package:flutter_todos/widgets/task_input.dart';
 import 'package:flutter_todos/widgets/todo.dart';
 import 'package:flutter_todos/widgets/done.dart';
@@ -61,13 +60,15 @@ class _HomeScreenState extends State<HomeScreen> {
             slivers: <Widget>[
               SliverAppBar(
                 shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.only(
-                  bottomLeft: Radius.circular(20),
-                  bottomRight: Radius.circular(20),
-                )),
+                  borderRadius: BorderRadius.only(
+                    bottomLeft: Radius.circular(20),
+                    bottomRight: Radius.circular(20),
+                  ),
+                ),
                 floating: true,
                 pinned: true,
                 backgroundColor: Colors.white,
+                brightness: Brightness.light,
                 flexibleSpace: FlexibleSpaceBar(
                   background: Column(
                     children: <Widget>[
@@ -80,8 +81,14 @@ class _HomeScreenState extends State<HomeScreen> {
                                   mainAxisAlignment:
                                       MainAxisAlignment.spaceBetween,
                                   children: <Widget>[
-                                    Header(
-                                      msg: welcomeMsg,
+                                    Container(
+                                      padding: EdgeInsets.only(
+                                          left: 15.0, top: 30.0),
+                                      child: Text(welcomeMsg,
+                                          style: TextStyle(
+                                              fontWeight: FontWeight.bold,
+                                              fontSize: 30,
+                                              color: Colors.black)),
                                     ),
                                     Container(
                                       margin: EdgeInsets.only(top: 35),
