@@ -8,7 +8,7 @@ TextStyle inTitleStyle = new TextStyle(
   fontFamily: 'Avenir', 
   fontWeight: FontWeight.bold, 
   color: darkGreyColor, 
-  fontSize: 50
+  fontSize: 30
 );
 
 TextStyle darkTodoTitle = new TextStyle(
@@ -16,6 +16,27 @@ TextStyle darkTodoTitle = new TextStyle(
   fontWeight: FontWeight.bold, 
   color: darkGreyColor, 
   fontSize: 15
+);
+
+TextStyle whiteButtonTitle = new TextStyle(
+  fontFamily: 'Avenir', 
+  fontWeight: FontWeight.bold, 
+  color: Colors.white, 
+  fontSize: 15
+);
+
+TextStyle whiteTitle = new TextStyle(
+  fontFamily: 'Avenir', 
+  fontWeight: FontWeight.bold, 
+  color: Colors.white, 
+  fontSize: 20
+);
+
+TextStyle whiteHint = new TextStyle(
+  fontFamily: 'Avenir', 
+  fontWeight: FontWeight.bold, 
+  color: Colors.white.withOpacity(50), 
+  fontSize: 10
 );
 
 

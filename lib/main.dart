@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_todos/constants.dart';
 import 'package:flutter_todos/utils/colors.dart';
-import 'package:flutter_todos/widgets/task_input.dart';
 import 'package:flutter_todos/widgets/todo.dart';
 import 'package:flutter_todos/widgets/done.dart';
 import 'package:flutter_todos/model/model.dart' as Model;
@@ -84,11 +83,8 @@ class _HomeScreenState extends State<HomeScreen> {
                                     Container(
                                       padding: EdgeInsets.only(
                                           left: 15.0, top: 30.0),
-                                      child: Text(welcomeMsg,
-                                          style: TextStyle(
-                                              fontWeight: FontWeight.bold,
-                                              fontSize: 30,
-                                              color: Colors.black)),
+                                      child:
+                                          Text(welcomeMsg, style: inTitleStyle),
                                     ),
                                     Container(
                                       margin: EdgeInsets.only(top: 35),
@@ -99,12 +95,26 @@ class _HomeScreenState extends State<HomeScreen> {
                                   ],
                                 ),
                               ),
-                              Container(
+                              /*Container(
                                 margin: EdgeInsets.only(top: 10),
                                 child: TaskInput(
                                   onSubmitted: addTaskInTodo,
                                 ), // Add Todos
-                              ),
+                              ),*/
+                              Container(
+                                margin: EdgeInsets.only(top: 18),
+                                child: FloatingActionButton(
+                                  elevation: 0,
+                                  backgroundColor: redColor,
+                                  child: Icon(
+                                    Icons.add,
+                                    size: 30,
+                                  ),
+                                  onPressed: () {
+                                    Utils.showAddDialog(context: context, addTaskInTodo: addTaskInTodo);
+                                  }
+                                ),
+                              )
                             ],
                           ),
                         ],
@@ -112,7 +122,7 @@ class _HomeScreenState extends State<HomeScreen> {
                     ],
                   ),
                 ),
-                expandedHeight: 200,
+                expandedHeight: 150,
               ),
               SliverList(
                 delegate: SliverChildBuilderDelegate(
@@ -191,4 +201,5 @@ class _HomeScreenState extends State<HomeScreen> {
     DBWrapper.sharedInstance.deleteTodo(todo);
     getTodosAndDones();
   }
+
 }

@@ -69,4 +69,78 @@ class Utils {
     );
     showDialog(context: context, builder: (x) => dialog);
   }
+  static void showAddDialog({BuildContext context, final Function  addTaskInTodo}) {
+    TextEditingController taskName = new TextEditingController();
+        // flutter defined function
+    showDialog(
+      context: context,
+      builder: (BuildContext context) {
+        // return object of type Dialog
+        return AlertDialog(
+          elevation: 0,
+          backgroundColor: Colors.transparent,
+          content: Container(
+            padding: EdgeInsets.all(20),
+            constraints: BoxConstraints.expand(
+              height: 250,
+            ),
+            decoration: BoxDecoration(
+                borderRadius: BorderRadius.all(Radius.circular(13)),
+                color: darkGreyColor),
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              crossAxisAlignment: CrossAxisAlignment.center,
+              children: <Widget>[
+                Text("Add New Task", style: whiteTitle),
+                Container(
+                  child: TextField(
+                    controller: taskName,
+                    autocorrect: true,
+                    autofocus: true,
+                    decoration: InputDecoration(
+                      hintText: "Name of task",
+                      hintStyle: whiteButtonTitle,
+                      enabledBorder: UnderlineInputBorder(
+                        borderSide: BorderSide(color: Colors.white),
+                      ),
+                    ),
+                  ),
+                ),
+
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  children: <Widget>[
+                    RaisedButton(
+                      color: redColor,
+                      child: Text(
+                        "Cancel",
+                        style: whiteButtonTitle,
+                      ),
+                      onPressed: () {
+                        Navigator.pop(context);
+                      },
+                    ),
+                    RaisedButton(
+                      color: redColor,
+                      child: Text(
+                        "Add",
+                        style: whiteButtonTitle,
+                      ),
+                      onPressed: (){
+                        if (taskName.text != null){
+                          addTaskInTodo(controller: taskName);
+                          Navigator.pop(context);
+                        }
+                      },
+                    ),
+                  ],
+                )
+              ],
+            ),
+          ),
+        );
+      },
+    );
+  }
 }
