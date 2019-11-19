@@ -74,6 +74,7 @@ class _TodoState extends State<Todo> {
           context: context,
           text: 'Tasks',
           customFontSize: 20,
+          backgroundColorCode: Colors.red.withAlpha(215),
         ),
       ],
     );
@@ -90,7 +91,7 @@ class _TodoState extends State<Todo> {
               actionPane: SlidableBehindActionPane(),
               key: Key(text + '$index'),
               direction: Axis.horizontal,
-              actionExtentRatio: 0.25,
+              actionExtentRatio: 0.15,
               movementDuration: Duration(milliseconds: 500),
               dismissal: SlidableDismissal(
                 child: SlidableDrawerDismissal(),
@@ -98,71 +99,70 @@ class _TodoState extends State<Todo> {
                   widget.onDeleteTask(todo: widget.todos[index]);
                 },
               ),
-              child: IntrinsicHeight(
-                child: Row(
-                  children: <Widget>[
-                    Expanded(
-                      child: Container(
-                        decoration: BoxDecoration(
-                          color: redColor,
-                          borderRadius: BorderRadius.all(Radius.circular(10)),
-                          boxShadow: [
-                            new BoxShadow(
-                              color: Colors.black.withOpacity(0.3),
-                              blurRadius: 10.0,
-                            ),
-                          ],
-                        ),
-                        constraints: BoxConstraints(minHeight: 80),
-                        margin: EdgeInsets.only(
-                          left: 10,
-                          right: 10,
-                        ),
-                        padding: EdgeInsets.only(
-                            left: 10, top: 10, right: 10, bottom: 10),
-                        child: Row(
-                          crossAxisAlignment: CrossAxisAlignment.center,
-                          children: <Widget>[
-                            
-                            Material(
-                              color: Colors.transparent,
-                              child: Padding(
-                                padding: EdgeInsets.all(8.0),
-                                child: InkWell(
-                                  customBorder: new CircleBorder(),
-                                  onTap: onTap,
-                                  splashColor: Colors.black,
-                                  child: Icon(
-                                    Icons.radio_button_unchecked,
-                                    size: 24,
-                                    color: Colors.black,
-                                  ),
+              child: Row(
+                children: <Widget>[
+                  Expanded(
+                    child: Container(
+                      decoration: BoxDecoration(
+                        color: redColor,
+                        borderRadius: BorderRadius.all(Radius.circular(10)),
+                        boxShadow: [
+                          new BoxShadow(
+                            color: Colors.black.withOpacity(0.3),
+                            blurRadius: 10.0,
+                          ),
+                        ],
+                      ),
+                      constraints: BoxConstraints(minHeight: 80),
+                      margin: EdgeInsets.only(
+                        left: 10,
+                        right: 10,
+                      ),
+                      padding: EdgeInsets.only(
+                          left: 10, top: 10, right: 10, bottom: 10),
+                      child: Row(
+                        crossAxisAlignment: CrossAxisAlignment.center,
+                        children: <Widget>[
+                          
+                          Container(
+                            height: 40,
+                            width: 40,
+                            child: FittedBox(
+                              child: FloatingActionButton(
+                                elevation: 0,
+                                tooltip: "Mark as done",
+                                backgroundColor: Colors.transparent,
+                                onPressed: onTap,
+                                child: Icon(
+                                  Icons.radio_button_unchecked,
+                                  size: 35,
+                                  color: Colors.black,
                                 ),
                               ),
                             ),
+                          ),
 
-                            Expanded(
-                              child: Text(
-                                text,
-                                overflow: TextOverflow.clip,
-                                textAlign: TextAlign.justify,
-                                style:
-                                    Theme.of(context).textTheme.title.copyWith(
-                                          color: Colors.black,
-                                        ),
-                              ),
-                            )
-                          ],
-                        ),
+                          Expanded(
+                            child: Text(
+                              text,
+                              overflow: TextOverflow.clip,
+                              textAlign: TextAlign.justify,
+                              style:
+                                  Theme.of(context).textTheme.title.copyWith(
+                                        color: Colors.black,
+                                      ),
+                            ),
+                          )
+                        ],
                       ),
-                    )
-                  ],
-                ),
+                    ),
+                  )
+                ],
               ),
               actions: <Widget>[
                
                 Padding(
-                  padding: const EdgeInsets.only(left: 30),
+                  padding: const EdgeInsets.only(left: 20),
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.start,
                     children: <Widget>[

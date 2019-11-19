@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_todos/constants.dart';
 import 'package:flutter_todos/utils/colors.dart';
-import 'package:flutter_todos/widgets/task_input.dart';
 import 'package:flutter_todos/widgets/todo.dart';
 import 'package:flutter_todos/widgets/done.dart';
 import 'package:flutter_todos/model/model.dart' as Model;
@@ -16,7 +15,7 @@ class TodosApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     SystemChrome.setSystemUIOverlayStyle(SystemUiOverlayStyle.light.copyWith(
-        statusBarColor: Colors.white, // Color for Android
+        statusBarColor: Colors.white.withAlpha(230), // Color for Android
         statusBarIconBrightness: Brightness.dark,
         statusBarBrightness:
             Brightness.dark // Dark == white status bar -- for IOS.
@@ -67,7 +66,7 @@ class _HomeScreenState extends State<HomeScreen> {
                 ),
                 floating: true,
                 pinned: true,
-                backgroundColor: Colors.white,
+                backgroundColor: Colors.white.withAlpha(230),
                 brightness: Brightness.light,
                 flexibleSpace: FlexibleSpaceBar(
                   background: Column(
@@ -80,15 +79,13 @@ class _HomeScreenState extends State<HomeScreen> {
                                 child: Row(
                                   mainAxisAlignment:
                                       MainAxisAlignment.spaceBetween,
+                                  crossAxisAlignment: CrossAxisAlignment.center,
                                   children: <Widget>[
                                     Container(
                                       padding: EdgeInsets.only(
                                           left: 15.0, top: 30.0),
-                                      child: Text(welcomeMsg,
-                                          style: TextStyle(
-                                              fontWeight: FontWeight.bold,
-                                              fontSize: 30,
-                                              color: Colors.black)),
+                                      child:
+                                          Text(welcomeMsg, style: inTitleStyle),
                                     ),
                                     Container(
                                       margin: EdgeInsets.only(top: 35),
@@ -99,12 +96,31 @@ class _HomeScreenState extends State<HomeScreen> {
                                   ],
                                 ),
                               ),
-                              Container(
-                                margin: EdgeInsets.only(top: 10),
+                              /*Container(
+                                margin: EdgeInsets.only(top: 10),// old way of text input
                                 child: TaskInput(
                                   onSubmitted: addTaskInTodo,
                                 ), // Add Todos
-                              ),
+                              ),*/
+                              Container(
+                                margin: EdgeInsets.only(top: 30),
+                                height: 80,
+                                width: 80,
+                                child: FittedBox(
+                                  child: FloatingActionButton(
+                                      backgroundColor: redColor,
+                                      tooltip: "Add a task",
+                                      child: Icon(
+                                        Icons.add,
+                                        size: 30,
+                                      ),
+                                      onPressed: () {
+                                        Utils.showAddDialog(
+                                            context: context,
+                                            addTaskInTodo: addTaskInTodo);
+                                      }),
+                                ),
+                              )
                             ],
                           ),
                         ],

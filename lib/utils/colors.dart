@@ -5,19 +5,22 @@ Color redColor = new Color(0xFFDC4F64);
 Color darkGreyColor = new Color(0xFF212128);
 
 TextStyle inTitleStyle = new TextStyle(
-  fontFamily: 'Avenir', 
   fontWeight: FontWeight.bold, 
   color: darkGreyColor, 
-  fontSize: 50
+  fontSize: 30
 );
 
-TextStyle darkTodoTitle = new TextStyle(
-  fontFamily: 'Avenir', 
+TextStyle whiteButtonTitle = new TextStyle(
   fontWeight: FontWeight.bold, 
-  color: darkGreyColor, 
+  color: Colors.white, 
   fontSize: 15
 );
 
+TextStyle whiteTitle = new TextStyle(
+  fontWeight: FontWeight.bold, 
+  color: Colors.white, 
+  fontSize: 20
+);
 
 class TodosColor {
   static const kPrimaryColorCode = 0xffca3e47;

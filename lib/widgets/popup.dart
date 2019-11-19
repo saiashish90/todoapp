@@ -12,11 +12,13 @@ class Popup extends StatelessWidget {
     return Padding(
       padding: const EdgeInsets.all(8),
       child: InkWell(
-        child: Icon(Icons.delete_outline),
+        child: Icon(
+          Icons.delete_outline,
+          size: 33,
+        ),
         onTap: () {
-          Utils.showCustomDialog(context,
-              title: 'Are you sure?',
-              msg: 'All completed tasks will be deleted permanently', onConfirm: () {
+          Utils.showDeleteDialog(context,
+              onConfirm: () {
             DBWrapper.sharedInstance.deleteAllDoneTodos();
             getTodosAndDones();
           });

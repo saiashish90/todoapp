@@ -6,8 +6,7 @@ class SharedWidget {
       @required String text,
       Color textColor = Colors.white,
       Color backgroundColorCode = Colors.red,
-      double customFontSize}) {
-    customFontSize ??= Theme.of(context).textTheme.title.fontSize;
+      @required double customFontSize}) {
 
     return Container(
       alignment: AlignmentDirectional.center,
