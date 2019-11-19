@@ -15,7 +15,7 @@ class TodosApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     SystemChrome.setSystemUIOverlayStyle(SystemUiOverlayStyle.light.copyWith(
-        statusBarColor: Colors.white, // Color for Android
+        statusBarColor: Colors.white.withAlpha(230), // Color for Android
         statusBarIconBrightness: Brightness.dark,
         statusBarBrightness:
             Brightness.dark // Dark == white status bar -- for IOS.
@@ -66,7 +66,7 @@ class _HomeScreenState extends State<HomeScreen> {
                 ),
                 floating: true,
                 pinned: true,
-                backgroundColor: Colors.white,
+                backgroundColor: Colors.white.withAlpha(230),
                 brightness: Brightness.light,
                 flexibleSpace: FlexibleSpaceBar(
                   background: Column(
@@ -79,6 +79,7 @@ class _HomeScreenState extends State<HomeScreen> {
                                 child: Row(
                                   mainAxisAlignment:
                                       MainAxisAlignment.spaceBetween,
+                                  crossAxisAlignment: CrossAxisAlignment.center,
                                   children: <Widget>[
                                     Container(
                                       padding: EdgeInsets.only(
@@ -96,23 +97,28 @@ class _HomeScreenState extends State<HomeScreen> {
                                 ),
                               ),
                               /*Container(
-                                margin: EdgeInsets.only(top: 10),
+                                margin: EdgeInsets.only(top: 10),// old way of text input
                                 child: TaskInput(
                                   onSubmitted: addTaskInTodo,
                                 ), // Add Todos
                               ),*/
                               Container(
-                                margin: EdgeInsets.only(top: 18),
-                                child: FloatingActionButton(
-                                  elevation: 0,
-                                  backgroundColor: redColor,
-                                  child: Icon(
-                                    Icons.add,
-                                    size: 30,
-                                  ),
-                                  onPressed: () {
-                                    Utils.showAddDialog(context: context, addTaskInTodo: addTaskInTodo);
-                                  }
+                                margin: EdgeInsets.only(top: 30),
+                                height: 80,
+                                width: 80,
+                                child: FittedBox(
+                                  child: FloatingActionButton(
+                                      backgroundColor: redColor,
+                                      tooltip: "Add a task",
+                                      child: Icon(
+                                        Icons.add,
+                                        size: 30,
+                                      ),
+                                      onPressed: () {
+                                        Utils.showAddDialog(
+                                            context: context,
+                                            addTaskInTodo: addTaskInTodo);
+                                      }),
                                 ),
                               )
                             ],
@@ -122,7 +128,7 @@ class _HomeScreenState extends State<HomeScreen> {
                     ],
                   ),
                 ),
-                expandedHeight: 150,
+                expandedHeight: 200,
               ),
               SliverList(
                 delegate: SliverChildBuilderDelegate(
@@ -201,5 +207,4 @@ class _HomeScreenState extends State<HomeScreen> {
     DBWrapper.sharedInstance.deleteTodo(todo);
     getTodosAndDones();
   }
-
 }
