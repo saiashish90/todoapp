@@ -131,7 +131,7 @@ class _DoneState extends State<Done> {
                                 backgroundColor: Colors.transparent,
                                 onPressed: onTap,
                                 child: Icon(
-                                  Icons.radio_button_unchecked,
+                                  Icons.radio_button_checked,
                                   size: 35,
                                   color: Colors.black,
                                 ),
