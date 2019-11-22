@@ -157,21 +157,18 @@ class _DoneState extends State<Done> {
             ],
           ),
           actions: <Widget>[
-            Padding(
-              padding: const EdgeInsets.only(left: 30),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.start,
-                children: <Widget>[
-                  new IconSlideAction(
-                    caption: 'Share',
-                    color: darkGreyColor,
-                    icon: Icons.share,
-                    onTap: () {
-                      Share.share(text);
-                    },
-                  ),
-                ],
-              ),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.start,
+              children: <Widget>[
+                new IconSlideAction(
+                  caption: 'Share',
+                  color: darkGreyColor,
+                  icon: Icons.share,
+                  onTap: () {
+                    Share.share(text);
+                  },
+                ),
+              ],
             ),
           ],
         ),
